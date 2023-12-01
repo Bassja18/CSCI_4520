@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1093582545086",
+    "project_id": "bassja18-hw6",
+    "storage_bucket": "bassja18-hw6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093582545086:android:5abc4f6decb19882b47eef",
+        "android_client_info": {
+          "package_name": "com.example.bassja18_hw6"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDCffJXMkQa7tK9R7vwicFJ0I-8oMgpfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

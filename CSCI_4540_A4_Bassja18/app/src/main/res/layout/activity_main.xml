@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/canvasImageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The shapes appear in random sizes and in random locations. The default draw color is black. Painting freehand is more of a fill and draw at the same time." />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="1000px"
+        android:layout_height="375px"
+        android:gravity="center|fill"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/drawRectangleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Draw Rectangle"
+            app:layout_constraintBottom_toTopOf="@+id/clearButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/randomColorBtn"
+            app:layout_constraintTop_toBottomOf="@+id/drawCircleButton"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/drawCircleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Draw Circle"
+            app:layout_constraintBottom_toTopOf="@+id/drawRectangleButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/freehandButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/drawButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Draw"
+            app:layout_constraintBottom_toTopOf="@+id/paintButton"
+            app:layout_constraintEnd_toStartOf="@+id/freehandButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/freehandButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="     Freehand Mode"
+            app:layout_constraintBottom_toTopOf="@+id/drawRectangleButton"
+            app:layout_constraintEnd_toStartOf="@+id/drawCircleButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <CheckBox
+            android:id="@+id/checkBoxFreeHand"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            app:layout_constraintBottom_toTopOf="@+id/randomColorBtn"
+            app:layout_constraintEnd_toStartOf="@+id/freehandButton"
+            app:layout_constraintHorizontal_bias="0.768"
+            app:layout_constraintStart_toEndOf="@+id/freehandButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="  " />
+
+        <Button
+            android:id="@+id/paintButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Paint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/randomColorBtn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawButton"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <CheckBox
+            android:id="@+id/checkBoxPaint"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginBottom="17dp"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="  " />
+
+        <CheckBox
+            android:id="@+id/checkBoxDraw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="79dp"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="  " />
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawRectangleButton"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/randomColorBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Random Color"
+            app:layout_constraintBottom_toTopOf="@+id/clearButton"
+            app:layout_constraintEnd_toStartOf="@+id/drawRectangleButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/paintButton"
+            app:layout_constraintTop_toBottomOf="@+id/freehandButton"
+            app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
