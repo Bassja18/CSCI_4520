@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mobilecomputingfinalproject"
+    namespace = "com.example.mc_finalproj"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.mobilecomputingfinalproject"
+        applicationId = "com.example.mc_finalproj"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

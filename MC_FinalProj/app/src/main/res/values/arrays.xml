@@ -1,0 +1,17 @@
+<resources>
+    <string-array name="measurements">
+        <item>1</item>
+        <item>1/2</item>
+        <item>1/4</item>
+        <item>1/8</item>
+        <!-- Add more measurement values as needed -->
+    </string-array>
+
+    <string-array name="unit_sizes">
+        <item>Cups</item>
+        <item>Liters</item>
+        <item>Tablespoons (tbsp)</item>
+        <item>Teaspoons (tsp)</item>
+        <!-- Add more unit values as needed -->
+    </string-array>
+</resources>

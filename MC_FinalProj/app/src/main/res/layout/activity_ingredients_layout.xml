@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewIngredientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient Name"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextIngredientName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/textViewIngredientName"
+        android:hint="Enter ingredient name"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textViewIngredientMeasurement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient Measurement"
+        android:layout_below="@id/editTextIngredientName"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearMeasurement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/textViewIngredientMeasurement"
+        android:layout_marginTop="8dp">
+
+        <Spinner
+            android:id="@+id/spinnerMeasurement"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:prompt="@string/prompt_choose_measurement"
+            android:layout_marginRight="8dp"
+            android:entries="@array/measurements"/>
+
+        <Spinner
+            android:id="@+id/spinnerUnitSize"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:prompt="@string/prompt_choose_unit"
+            android:layout_marginLeft="8dp"
+            android:entries="@array/unit_sizes"/>
+    </LinearLayout>
+
+    <!-- Add another button -->
+    <Button
+        android:id="@+id/buttonAddAnother"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Another"
+        android:layout_below="@id/linearMeasurement"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Add button -->
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:layout_below="@id/buttonAddAnother"
+        android:layout_marginTop="8dp"/>
+</RelativeLayout>
