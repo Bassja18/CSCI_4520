@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference recipeRef;
 
-    private String title, description, tempRecipeString, ingredient;
+    private String title, description, tempRecipeString, ingredient, ingredientName, ingredientMeasurement, ingredientSize;
 
     private Recipe recipe;
 
@@ -103,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
         title = editTextTitle.getText().toString().trim();
         description = editTextDescription.getText().toString().trim();
 
-        ingredient = getIntent().getStringExtra("name");
+        ingredientName = getIntent().getStringExtra("name");
+        ingredientMeasurement = getIntent().getStringExtra("measurement");
+        ingredientSize = getIntent().getStringExtra("size");
+
+        ingredient = ingredientName + " " + ingredientMeasurement + " " + ingredientSize;
 
         if (ingredient == null || ingredient == "")
         {
