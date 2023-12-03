@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,11 +104,15 @@ public class MainActivity extends AppCompatActivity {
         title = editTextTitle.getText().toString().trim();
         description = editTextDescription.getText().toString().trim();
 
-        ingredientName = getIntent().getStringExtra("name");
-        ingredientMeasurement = getIntent().getStringExtra("measurement");
-        ingredientSize = getIntent().getStringExtra("size");
+        ArrayList<String> ingredients = getIntent().getStringArrayListExtra("name");
+        ingredient = TextUtils.join(", ", ingredients);
+        ingredient = formatString(ingredient);
 
-        ingredient = ingredientName + " " + ingredientMeasurement + " " + ingredientSize;
+        //ingredientName = getIntent().getStringExtra("name");
+        //ingredientMeasurement = getIntent().getStringExtra("measurement");
+        //ingredientSize = getIntent().getStringExtra("size");
+
+        //ingredient = ingredientName + " " + ingredientMeasurement + " " + ingredientSize;
 
         if (ingredient == null || ingredient == "")
         {
@@ -159,5 +164,21 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    private static String formatString(String input) {
+        String[] numbers = input.split(",\\s*");
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < numbers.length; i++) {
+            result.append(numbers[i]);
+            if ((i + 1) % 3 == 0 && i < numbers.length - 1) {
+                result.append(", ");
+            } else if (i < numbers.length - 1) {
+                result.append(" ");
+            }
+        }
+
+        return result.toString();
     }
 }

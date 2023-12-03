@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientsActivity extends AppCompatActivity {
@@ -24,6 +25,8 @@ public class IngredientsActivity extends AppCompatActivity {
 
     private Intent intent;
 
+    private List<String> ingredientList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,8 @@ public class IngredientsActivity extends AppCompatActivity {
         buttonAddAnother = findViewById(R.id.buttonAddAnother);
         buttonAdd = findViewById(R.id.buttonAdd);
 
+        ingredientList = new ArrayList<String>();
+
 
 
 
@@ -43,7 +48,16 @@ public class IngredientsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                name = editTextIngredientName.getText().toString().trim();
+                // Get selected values from spinners
+                measurement = spinnerMeasurement.getSelectedItem().toString();
+                size = spinnerUnitSize.getSelectedItem().toString();
 
+                ingredientList.add(name);
+                ingredientList.add(measurement);
+                ingredientList.add(size);
+
+                editTextIngredientName.setText("");
 
             }
         });
@@ -56,11 +70,13 @@ public class IngredientsActivity extends AppCompatActivity {
                 measurement = spinnerMeasurement.getSelectedItem().toString();
                 size = spinnerUnitSize.getSelectedItem().toString();
 
+                ingredientList.add(name);
+                ingredientList.add(measurement);
+                ingredientList.add(size);
+
                 // Create an intent and pass data
                 intent = new Intent(IngredientsActivity.this, MainActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("measurement", measurement);
-                intent.putExtra("size", size);
+                intent.putStringArrayListExtra("name", (ArrayList<String>) ingredientList);
 
                 // Start the MainActivity
                 startActivity(intent);
