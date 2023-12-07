@@ -6,14 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IngredientsActivity extends AppCompatActivity {
+public class AddRecipe extends AppCompatActivity {
 
     private EditText editTextIngredientName;
     private Spinner spinnerMeasurement;
@@ -75,8 +74,13 @@ public class IngredientsActivity extends AppCompatActivity {
                 ingredientList.add(size);
 
                 // Create an intent and pass data
-                intent = new Intent(IngredientsActivity.this, MainActivity.class);
+                intent = new Intent(AddRecipe.this, MainActivity.class);
                 intent.putStringArrayListExtra("name", (ArrayList<String>) ingredientList);
+
+                intent.putExtra("showCard", true); // Add this line to signal MainActivity to show card1
+
+                intent.putExtra("title", getIntent().getStringExtra("title"));
+                intent.putExtra("description", getIntent().getStringExtra("description"));
 
                 // Start the MainActivity
                 startActivity(intent);

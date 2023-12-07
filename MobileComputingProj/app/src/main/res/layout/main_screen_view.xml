@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="10sp"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/LogoCardView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="10sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:padding="5sp"
+                android:src="@drawable/cooking" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="cursive"
+                android:padding="25sp"
+                android:text="COOKBOOK"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/addRecipeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:text="Add Recipe" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/addRecipeBtn"
+        android:ems="10"
+        android:inputType="text"
+        android:text="name" />
+
+    <ListView
+        android:id="@+id/recipeListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/addRecipeBtn"
+        android:layout_below="@id/LogoCardView" />
+
+</RelativeLayout>

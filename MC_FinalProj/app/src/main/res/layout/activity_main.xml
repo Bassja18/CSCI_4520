@@ -6,33 +6,39 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextTitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Enter Title" />
-
-    <EditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Enter Description" />
-
-    <Button
-        android:id="@+id/btnAddRecipe"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Recipe" />
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
 
-    <Button
-        android:id="@+id/addIngredientBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Ingredients" />
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:src="@drawable/cooking"
+                android:padding="5sp"
+                />
 
-    <ListView
-        android:id="@+id/listViewRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipes For Later"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:padding="25sp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 </LinearLayout>

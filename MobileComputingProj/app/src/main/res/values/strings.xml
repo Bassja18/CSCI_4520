@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MC_FinalProj</string>
+    <string name="prompt_choose_unit">Choose a unit size</string>
+    <string name="prompt_choose_measurement">Choose Measurement</string>
+</resources>

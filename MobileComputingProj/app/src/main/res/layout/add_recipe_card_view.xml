@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editRecipeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Recipe Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/editRecipeTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextIngredientName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/editTextDescription"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:ems="10"
+        android:hint="Ingredient"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textViewMeasurement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextIngredientName"
+        android:text="Measurement:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/textViewMeasurement"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="112dp"
+        android:layout_toRightOf="@id/textViewMeasurement"
+        android:text="Amount:"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/spinnerMeasurement"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/textViewMeasurement"
+        android:entries="@array/measurements" />
+
+    <Spinner
+        android:id="@+id/spinnerUnitSize"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/textViewAmount"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="0dp"
+        android:layout_toRightOf="@id/spinnerMeasurement"
+        android:entries="@array/unit_sizes" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipeIngredientListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="425dp"
+        android:layout_below="@id/spinnerMeasurement" />
+
+    <Button
+        android:id="@+id/recipeCompleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/recipeIngredientListRecyclerView"
+        android:text="Add Recipe" />
+
+    <Button
+        android:id="@+id/addAnotherIngredientBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/recipeIngredientListRecyclerView"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/recipeCompleteBtn"
+        android:text="Add Another Ingredient" />
+
+</RelativeLayout>

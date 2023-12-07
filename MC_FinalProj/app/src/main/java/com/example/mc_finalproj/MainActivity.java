@@ -1,9 +1,8 @@
 package com.example.mc_finalproj;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,32 +10,34 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
+//import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public CardView card1, card2, card3, card4;
+    public TextView textCard1, textCard2, textCard3, textCard4;
     //Initialize Variables
     private EditText editTextTitle, editTextDescription;
     private Button btnAddRecipe, addIngBtn;
-    private ListView listViewRecipes;
+    //private ListView listViewRecipes;
 
     private DatabaseReference databaseReference;
-    private FirebaseStorage storage;
     private StorageReference recipeRef;
+    private FirebaseStorage storage;
 
     private String title, description, tempRecipeString, ingredient, ingredientName, ingredientMeasurement, ingredientSize;
 
@@ -59,12 +60,27 @@ public class MainActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDescription = findViewById(R.id.editTextDescription);
 
+        // Cards
+        card1 = (CardView) findViewById(R.id.c1);
+        card2 = (CardView) findViewById(R.id.c2);
+        card3 = (CardView) findViewById(R.id.c3);
+        card4 = (CardView) findViewById(R.id.c4);
+        textCard1 = (TextView) findViewById(R.id.c1text);
+        textCard2 = (TextView) findViewById(R.id.c2text);
+        textCard3 = (TextView) findViewById(R.id.c3text);
+        textCard4 = (TextView) findViewById(R.id.c4text);
+
+        card1.setOnClickListener(this);
+        card2.setOnClickListener(this);
+        card3.setOnClickListener(this);
+        card4.setOnClickListener(this);
+
         //Buttons
         btnAddRecipe = findViewById(R.id.btnAddRecipe);
         addIngBtn = findViewById(R.id.addIngredientBtn);
 
         //List View
-        listViewRecipes = findViewById(R.id.listViewRecipes);
+        //listViewRecipes = findViewById(R.id.listViewRecipes);
 
         //Get reference to the "Recipes" node in the Firebase Realtime Database
         databaseReference = FirebaseDatabase.getInstance().getReference("Recipes");
@@ -74,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Get reference to the root of your Firebase Storage
         recipeRef = storage.getReference();
+
+        //recipeRef = FirebaseStorage.getInstance().getReference();
 
 
         //Button Functionality
@@ -90,36 +108,66 @@ public class MainActivity extends AppCompatActivity {
         addIngBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(MainActivity.this, IngredientsActivity.class);
+                intent = new Intent(MainActivity.this, AddRecipe.class);
+                intent.putExtra("title", editTextTitle.getText().toString().trim());
+                intent.putExtra("description", editTextDescription.getText().toString().trim());
                 startActivity(intent);
             }
         });
-
+        // Used to display the card after entering ingredients in the "Ingredients Activity"
+        if (getIntent().getBooleanExtra("showCard", false)) {
+            String name = getIntent().getStringExtra("title");
+            // Show a new card only if the previous one is visible
+            // Couldnt get this to work so we should probably trash it and just have the one that will
+            // update when user inputs
+            if (card1.getVisibility() != View.VISIBLE) {
+                textCard1.setText(name);
+                card1.setVisibility(View.VISIBLE);
+            } else if (card2.getVisibility() != View.VISIBLE) {
+                textCard2.setText(name);
+                card2.setVisibility(View.VISIBLE);
+            } else if (card3.getVisibility() != View.VISIBLE) {
+                textCard3.setText(name);
+                card3.setVisibility(View.VISIBLE);
+            } else if (card4.getVisibility() != View.VISIBLE) {
+                textCard4.setText(name);
+                card4.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 
     private void addRecipe() {
-
         // Get user input for title and description
         title = editTextTitle.getText().toString().trim();
         description = editTextDescription.getText().toString().trim();
 
         ArrayList<String> ingredients = getIntent().getStringArrayListExtra("name");
-        ingredient = TextUtils.join(", ", ingredients);
-        ingredient = formatString(ingredient);
 
+        //Check if ingredients is null before using it
+        if (ingredients != null) {
+            ingredient = TextUtils.join(", ", ingredients);
+        } else {
+            ingredient = "";
+        }
+
+        //I placed these two lines in the if statement to keep the app from crashing if you leave
+        // the title and descriptions empty then click on the add recipe button
+        //ingredient = TextUtils.join(", ", ingredients);
+        //ingredient = formatString(ingredient);
+
+        //Don't remember if these were commented out or not so check behind me plz
         //ingredientName = getIntent().getStringExtra("name");
         //ingredientMeasurement = getIntent().getStringExtra("measurement");
         //ingredientSize = getIntent().getStringExtra("size");
 
         //ingredient = ingredientName + " " + ingredientMeasurement + " " + ingredientSize;
 
-        if (ingredient == null || ingredient == "")
+        //Think we can get rid of this since I included the if else statement 146-149
+        if (ingredient == null || ingredient.isEmpty())
         {
             ingredient = "";
         }
-
-
 
         if (title.isEmpty() || description.isEmpty()) {
             // Display a message if title or description is empty
@@ -180,5 +228,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return result.toString();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent i;
+        if (view.getId() == R.id.c1) {
+            i = new Intent(this, RecipeCard.class);
+            startActivity(i);
+        }
+        if (view.getId() == R.id.c2) {
+            i = new Intent(this, RecipeCard.class);
+            startActivity(i);
+        }
+        if (view.getId() == R.id.c3) {
+            i = new Intent(this, RecipeCard.class);
+            startActivity(i);
+        }
+        if (view.getId() == R.id.c4) {
+            i = new Intent(this, RecipeCard.class);
+            startActivity(i);
+        }
     }
 }
