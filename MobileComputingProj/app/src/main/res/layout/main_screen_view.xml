@@ -49,15 +49,6 @@
         android:layout_alignParentBottom="true"
         android:text="Add Recipe" />
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/addRecipeBtn"
-        android:ems="10"
-        android:inputType="text"
-        android:text="name" />
-
     <ListView
         android:id="@+id/recipeListView"
         android:layout_width="match_parent"

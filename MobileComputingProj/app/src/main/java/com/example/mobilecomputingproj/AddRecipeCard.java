@@ -27,6 +27,8 @@ public class AddRecipeCard extends AppCompatActivity {
 
     private Intent intent;
 
+    private String name, description, ingredientName, meaSpinStr, amoSpinStr, ingrNameTemp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +52,11 @@ public class AddRecipeCard extends AppCompatActivity {
             public void onClick(View view) {
                 intent = new Intent(AddRecipeCard.this, MainScreen.class);
 
-                String name = editRecipeTitle.getText().toString().trim();
-                String description = editTextDescription.getText().toString().trim();
-                String ingredientName = editTextIngredientName.getText().toString().trim();
-                String meaSpinStr = spinnerMeasurement.getSelectedItem().toString();
-                String amoSpinStr = spinnerUnitSize.getSelectedItem().toString();
+                name = editRecipeTitle.getText().toString().trim();
+                description = editTextDescription.getText().toString().trim();
+                ingredientName = editTextIngredientName.getText().toString().trim();
+                meaSpinStr = spinnerMeasurement.getSelectedItem().toString();
+                amoSpinStr = spinnerUnitSize.getSelectedItem().toString();
 
                 intent.putExtra("recipeTitle", name);
                 intent.putExtra("recipeDescription", description);
@@ -63,14 +65,11 @@ public class AddRecipeCard extends AppCompatActivity {
                 {
                     if (ingredientName.isEmpty())
                     {
-                        ingredientName = "";
-                        meaSpinStr = "";
-                        amoSpinStr = "";
-                        
-                        intent.putExtra("ingredientName", ingredientName);
+                        intent.putExtra("ingredientName", ingrNameTemp);
                         intent.putExtra("mea", meaSpinStr);
                         intent.putExtra("amo", amoSpinStr);
                         String ingredientArrayStr = convertIngredientArrayToString(ingredientArray);
+                        ingredientArrayStr = ingredientArrayStr.replace("\n", "");
                         intent.putExtra("ingredientList", ingredientArrayStr);
                         setResult(RESULT_OK, intent);
                         finish();
@@ -81,6 +80,7 @@ public class AddRecipeCard extends AppCompatActivity {
                         intent.putExtra("mea", meaSpinStr);
                         intent.putExtra("amo", amoSpinStr);
                         String ingredientArrayStr = convertIngredientArrayToString(ingredientArray);
+                        ingredientArrayStr = ingredientArrayStr.replace("\n", "");
                         intent.putExtra("ingredientList", ingredientArrayStr);
                         setResult(RESULT_OK, intent);
                         finish();
@@ -91,15 +91,11 @@ public class AddRecipeCard extends AppCompatActivity {
                     intent.putExtra("ingredientName", ingredientName);
                     intent.putExtra("mea", meaSpinStr);
                     intent.putExtra("amo", amoSpinStr);
-                    String ingredientArrayStr = "";
+                    String ingredientArrayStr = ingredientName + " " + meaSpinStr + " " + amoSpinStr;
                     intent.putExtra("ingredientList", ingredientArrayStr);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
-
-                //Todo: Might have to clear recycler view on this click if it keeps old recipe ingredients.
-
-                //Todo: Send recipe to database
             }
 
             private String convertIngredientArrayToString(ArrayList<Recipe> ingredientArray) {
@@ -120,14 +116,15 @@ public class AddRecipeCard extends AppCompatActivity {
         addAnotherIngredientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Todo: Populate recycler view with ingredient on click. Possibly refresh recycler after button click if its not auto populated.
-                String ingredientName = editTextIngredientName.getText().toString().trim();
-                String meaSpinStr = spinnerMeasurement.getSelectedItem().toString();
-                String amoSpinStr = spinnerUnitSize.getSelectedItem().toString();
+                ingredientName = editTextIngredientName.getText().toString().trim();
+                meaSpinStr = spinnerMeasurement.getSelectedItem().toString();
+                amoSpinStr = spinnerUnitSize.getSelectedItem().toString();
 
                 Recipe tempRecipe = new Recipe(ingredientName, meaSpinStr, amoSpinStr);
 
                 ingredientArray.add(tempRecipe);
+
+                ingrNameTemp = ingredientName;
 
                 editTextIngredientName.setText("");
             }
