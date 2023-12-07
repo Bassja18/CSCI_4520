@@ -61,16 +61,38 @@ public class AddRecipeCard extends AppCompatActivity {
 
                 if (!ingredientArray.isEmpty())
                 {
-                    String ingredientArrayStr = convertIngredientArrayToString(ingredientArray);
-                    intent.putExtra("ingredientList", ingredientArrayStr);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    if (ingredientName.isEmpty())
+                    {
+                        ingredientName = "";
+                        meaSpinStr = "";
+                        amoSpinStr = "";
+                        
+                        intent.putExtra("ingredientName", ingredientName);
+                        intent.putExtra("mea", meaSpinStr);
+                        intent.putExtra("amo", amoSpinStr);
+                        String ingredientArrayStr = convertIngredientArrayToString(ingredientArray);
+                        intent.putExtra("ingredientList", ingredientArrayStr);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                    else
+                    {
+                        intent.putExtra("ingredientName", ingredientName);
+                        intent.putExtra("mea", meaSpinStr);
+                        intent.putExtra("amo", amoSpinStr);
+                        String ingredientArrayStr = convertIngredientArrayToString(ingredientArray);
+                        intent.putExtra("ingredientList", ingredientArrayStr);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
                 }
                 else
                 {
                     intent.putExtra("ingredientName", ingredientName);
                     intent.putExtra("mea", meaSpinStr);
                     intent.putExtra("amo", amoSpinStr);
+                    String ingredientArrayStr = "";
+                    intent.putExtra("ingredientList", ingredientArrayStr);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
